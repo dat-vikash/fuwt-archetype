@@ -15,9 +15,15 @@
         <spring.version>3.0.5.RELEASE</spring.version>
         <camel.version>2.7.0</camel.version>
         <logback.version>0.9.28</logback.version>
+        <fuwt.repo>http://payments.fuwt</fuwt.repo>
     </properties>
 
     <repositories>
+        <repository>
+            <id>fuwt-repo</id>
+            <name>Freelancers Repository</name>
+            <url>${fuwt.repo}</url>
+        </repository>
         <repository>
             <id>jboss</id>
             <name>JBoss</name>
@@ -30,6 +36,24 @@
         </repository>
 
     </repositories>
+
+    <distributionManagement>
+        <downloadUrl>${fuwt.repo}</downloadUrl>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>fuwt-release</id>
+            <name>Freelancers Repository</name>
+            <url>${fuwt.repo}</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>fuwt-snapshot</id>
+            <name>Freelancers Snapshots</name>
+            <url>${fuwt.repo}</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
 
 
     <dependencies>
