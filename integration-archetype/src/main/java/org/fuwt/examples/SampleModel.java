@@ -4,8 +4,6 @@ import org.apache.camel.component.jpa.Consumed;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
