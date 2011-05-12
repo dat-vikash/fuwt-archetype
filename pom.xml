@@ -5,16 +5,27 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fuwt</groupId>
-    <artifactId>fuwt-java-template</artifactId>
+    <artifactId>fuwt-archetype</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>fuwt-java-template</name>
+    <name>fuwt-archetype</name>
 
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>integration</module>
+        <module>web</module>
+        <module>security</module>
+        <module>integration-archetype</module>
+    </modules>
+
 
     <properties>
         <spring.version>3.0.5.RELEASE</spring.version>
         <camel.version>2.7.0</camel.version>
         <logback.version>0.9.28</logback.version>
+        <slf4j.version>1.6.1</slf4j.version>
+        <hibernate.version>3.4.0.GA</hibernate.version>
+
         <fuwt.repo>http://payments.fuwt</fuwt.repo>
     </properties>
 
@@ -25,9 +36,9 @@
             <url>${fuwt.repo}</url>
         </repository>
         <repository>
-            <id>jboss</id>
-            <name>JBoss</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+            <id>jboss2</id>
+            <name>JBoss Backup Repo</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
             <id>camel-extra-release</id>
@@ -56,69 +67,231 @@
     </distributionManagement>
 
 
-    <dependencies>
-        <!-- Dependencies to handle logging -->
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Spring web framework for creating web apps and services -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-oxm</artifactId>
+                <version>${spring.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- support for web service client and service interations, SOAP -->
+            <dependency>
+                <groupId>org.springframework.ws</groupId>
+                <artifactId>spring-ws-core</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- Dependency to support object to json mapping used in spring -->
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>1.7.5</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- Dependenct for template engine to be used for web view templates or
+        generating specialized file formats -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.14</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- This is a rather powerful java based transformation engine
+        for processing edi/object/xml/csv trandsformation -->
+            <dependency>
+                <groupId>org.milyn</groupId>
+                <artifactId>milyn-smooks-all</artifactId>
+                <version>1.4</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- Dependency for Apache Camel, integration framework -->
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-core</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jpa</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jaxb</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-jms</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-quartz</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-camel</artifactId>
+                <version>5.2.0</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <!-- this packacge contains a special classloader needed for running camel in jboss-->
+                <groupId>org.apache.camel.extra</groupId>
+                <artifactId>camel-jboss</artifactId>
+                <version>2.6.0</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!--Packages needed for security -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <!-- encryption and decryption JCE provider -->
+                <groupId>bouncycastle</groupId>
+                <artifactId>bcprov-jdk15</artifactId>
+                <version>140</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <!-- nice wrapper around JCE to perform some common password
+             and security related tasks-->
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>1.7</version>
+                <scope>compile</scope>
+            </dependency>
+
+
+            <!-- Dependency for JSP and JSTL specs, don't need to bundle these with the app
+      so they are scoped as provided -->
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jsp_2.2_spec</artifactId>
+                <version>1.0</version>
+                <scope>provided</scope>
+            </dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-access</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
+		</dependency>
 
 
-        <!-- Dependencies for spring (IoC container and web framework, supports
-    building REST web services -->
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+
+        <!--  Joda Time -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>1.6.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
+
+        <!-- Dependencies for spring (IoC container) -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
+            <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
+            <!-- Including in core to support orm for out of the box frameeork-->
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!-- support for web service client and service interations, SOAP -->
-        <dependency>
-            <groupId>org.springframework.ws</groupId>
-            <artifactId>spring-ws-core</artifactId>
-            <version>2.0.0.RELEASE</version>
             <scope>compile</scope>
         </dependency>
 
@@ -131,25 +304,13 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Dependency to support object to json mapping used in spring -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.7.5</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Dependenct for template engine to be used for web view templates or
-    generating specialized file formats -->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.14</version>
-            <scope>compile</scope>
-        </dependency>
-
-
         <!-- Dependency for hibernate JPA implementation -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -172,97 +333,41 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- This is a rather powerful java based transformation engine
-             for processing edi/object/xml/csv trandsformation -->
+        <!-- Dependencies to handle logging -->
         <dependency>
-            <groupId>org.milyn</groupId>
-            <artifactId>milyn-smooks-all</artifactId>
-            <version>1.4</version>
-            <scope>compile</scope>
-        </dependency>
-
-
-        <!-- Dependency for Apache Camel, integration framework -->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-core</artifactId>
-            <version>${camel.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring</artifactId>
-            <version>${camel.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jpa</artifactId>
-            <version>${camel.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jaxb</artifactId>
-            <version>${camel.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jms</artifactId>
-            <version>${camel.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-camel</artifactId>
-            <version>5.2.0</version>
-        </dependency>
-
-        <dependency>
-            <!-- this packacge contains a special classloader needed for running camel in jboss-->
-            <groupId>org.apache.camel.extra</groupId>
-            <artifactId>camel-jboss</artifactId>
-            <version>2.6.0</version>
-            <scope>compile</scope>
-        </dependency>
-
-
-        <!-- Packages needed for encryption and decryption -->
-        <dependency>
-            <groupId>bouncycastle</groupId>
-            <artifactId>bcprov-jdk15</artifactId>
-            <version>140</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jasypt</groupId>
-            <artifactId>jasypt</artifactId>
-            <version>1.7</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- Dependency for JSP and JSTL specs, don't need to bundle these with the app
-  so they are scoped as provided -->
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jsp_2.2_spec</artifactId>
-            <version>1.0</version>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.1</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
         </dependency>
 
 
@@ -345,11 +450,21 @@
 
     </dependencies>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>twdata-m2-repository</id>
+            <name>twdata.org Maven 2 Repository</name>
+            <url>http://twdata-m2-repository.googlecode.com/svn/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <build>
 
 
-        <finalName>fuwt-java-template</finalName>
+        <finalName>fuwt-archetype</finalName>
+
         <plugins>
+
 
             <!-- Reads from a properties file to allow for external configuration
                  of the Maven build -->
@@ -366,7 +481,7 @@
                         <configuration>
                             <quiet>true</quiet>
                             <files>
-                                <file>/etc/fuwt-java-template++/app.properties</file>
+                                <file>/etc/${project.artifactId}/app.properties</file>
                             </files>
                         </configuration>
                     </execution>
@@ -380,9 +495,14 @@
                 <version>6.1.22</version>
                 <configuration>
                     <useTestClasspath>true</useTestClasspath>
-                    <jettyEnvXml>src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
-                    <overrideWebXml>src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
+                    <jettyEnvXml>integration-archetype/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
+                    <overrideWebXml>integration-archetype/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.twdata.maven</groupId>
+                <artifactId>maven-cli-plugin</artifactId>
             </plugin>
 
             <!-- Stock maven pluging declared here to configure java source and target version -->

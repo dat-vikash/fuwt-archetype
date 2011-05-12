@@ -32,7 +32,7 @@ to any core Spring configuration -->
             <list>
                 <value>classpath:default.properties</value>
                 <!-- TODO: replace with properties file name for your app -->
-                <value>file:/etc/fuwt/app.properties</value>
+                <value>file:/etc/integration-archetype/app.properties</value>
                 <value>${config}</value>
             </list>
         </property>

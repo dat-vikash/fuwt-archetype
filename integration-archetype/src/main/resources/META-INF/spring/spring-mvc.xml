@@ -13,16 +13,7 @@ and integrating with Freemarker template engine to return views from those reque
 
     <mvc:annotation-driven/>
 
-    <!-- Standard spring RestTemplate that can be injected to consume a REST service.  If you need to add HTTP
-     Basic or Digest auth this config will need to be modified.  See spring docs
-      http://static.springsource.org/spring/docs/current/spring-framework-reference/html/remoting.html-->
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
-            </list>
-        </property>
-    </bean>
+
 
     <!-- freemarker config for where to look for freemarker templates-->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

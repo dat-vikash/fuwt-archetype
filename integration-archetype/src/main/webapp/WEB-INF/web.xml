@@ -6,7 +6,7 @@
         version="2.4">
 
 
-    <display-name>[Your App Name Here]</display-name>
+    <display-name>integration</display-name>
 
 
     <servlet>

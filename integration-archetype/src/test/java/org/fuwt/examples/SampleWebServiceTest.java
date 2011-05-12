@@ -8,16 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
 
 
-import javax.xml.namespace.QName;
-
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static net.javacrumbs.smock.common.client.CommonSmockClient.*;
-import static org.springframework.ws.test.server.ResponseMatchers.*;
-
-import static org.springframework.ws.test.client.RequestMatchers.*;
-
 
 
 /**
@@ -38,8 +32,8 @@ public class SampleWebServiceTest
     {
         MockWebServiceServer mockServer=MockWebServiceServer.createServer(webServiceGateway);
 
-        mockServer.expect(message("/org/fuwt/examples/sample-web-service-expected-request.xml"))
-                .andRespond(withMessage("/org/fuwt/examples/sample-web-service-test-response.xml"));
+        mockServer.expect(message("org/fuwt/examples/sample-web-service-expected-request.xml"))
+                .andRespond(withMessage("org/fuwt/examples/sample-web-service-test-response.xml"));
 
         GetInfoByZipResponse response = webServiceGateway.getCityAndStateFromZip("07302");
         assertThat(response.getCity(), is(equalToIgnoringCase("Jersey City")));

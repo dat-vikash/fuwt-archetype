@@ -9,13 +9,24 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-      <!--TODO this is the wiring of a sample web service gateway used to call a free SOAP
-          web service to decode zip codes.  You should modify/remove this block from your
-           project -->
+    <!-- Standard spring RestTemplate that can be injected to consume a REST service.  If you need to add HTTP
+   Basic or Digest auth this config will need to be modified.  See spring docs
+    http://static.springsource.org/spring/docs/current/spring-framework-reference/html/remoting.html-->
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--TODO this is the wiring of a sample web service gateway used to call a free SOAP
+  web service to decode zip codes.  You should modify/remove this block from your
+   project -->
     <bean id="sampleWebServiceGateway" class="org.fuwt.examples.SampleWebServiceGateway">
         <property name="defaultUri" value="http://www.webservicex.net/uszip.asmx"/>
         <property name="marshaller">
-           <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+            <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
                 <property name="classesToBeBound">
                     <list>
                         <value>org.fuwt.examples.GetInfoByZipRequest</value>
@@ -24,7 +35,6 @@
             </bean>
         </property>
     </bean>
-
 
 
 </beans>
