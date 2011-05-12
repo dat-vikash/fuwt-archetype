@@ -19,23 +19,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Time: 1:13 AM
  */
 @XmlRootElement(name = "sample")
-@XmlAccessorType(value = XmlAccessType.FIELD)
 @Entity
 @NamedQuery(name = "getAllDirtySamples", query = "select s from SampleModel s where s.syncd=false ")
 public class SampleModel
 {
 
-    @Column
-    @Id
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @GeneratedValue(generator = "system-uuid")
-    @XmlAttribute
+
     private String id;
-
-    @Column
     private String name;
-
-    @Column
     private boolean syncd;
 
 
@@ -49,6 +40,11 @@ public class SampleModel
         this.syncd = syncd;
     }
 
+    @Column
+    @Id
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @XmlAttribute
     public String getId()
     {
         return id;
@@ -59,6 +55,7 @@ public class SampleModel
         this.id = id;
     }
 
+    @Column
     public String getName()
     {
         return name;
@@ -69,6 +66,7 @@ public class SampleModel
         this.name = name;
     }
 
+    @Column
     public boolean isSyncd()
     {
         return syncd;
