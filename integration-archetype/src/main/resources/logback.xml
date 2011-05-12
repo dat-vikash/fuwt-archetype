@@ -13,7 +13,7 @@
         <level value="${log.spring.level:-INFO}"/>
     </logger>
     <logger name="org.milyn" >
-        <level value="${log.smooks.level:-INFO}"/>
+        <level value="${log.smooks.level:-TRACE}"/>
     </logger>
     <logger name="org.fuwt" >
         <level value="${log.fuwt.level:-INFO}"/>

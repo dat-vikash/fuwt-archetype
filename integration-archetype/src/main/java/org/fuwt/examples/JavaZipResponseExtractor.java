@@ -16,24 +16,24 @@ import java.io.IOException;
  * Date: 5/10/11
  * Time: 9:17 PM
  */
-@Component("infoByZipResponseExtractor")
-public class SmooksZipResponseExtractor implements SourceExtractor<GetInfoByZipResponse>
+@Component("javaInfoByZipResponseExtractor")
+public class JavaZipResponseExtractor implements SourceExtractor<GetInfoByZipResponse>
 {
 
-    private static final Logger logger= LoggerFactory.getLogger(SmooksZipResponseExtractor.class);
+    private static final Logger logger= LoggerFactory.getLogger(JavaZipResponseExtractor.class);
 
     private final Smooks smooks;
 
-    public SmooksZipResponseExtractor()
+    public JavaZipResponseExtractor()
     {
         try
         {
-            smooks=new Smooks(getClass().getResourceAsStream("/META-INF/smooks/smooks-webservice-response-mapping.xml"));
+            smooks=new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
         }
         catch (Throwable t)
         {
             throw new IllegalStateException("Unable to initialize smooks instance for " +
-                                            "smooks-webservice-response-mapping.xml",t);
+                                            "java-webservice-response-mapping.xml",t);
         }
     }
 

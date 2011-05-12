@@ -250,7 +250,7 @@
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>1.6.2</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jackson JSON Mapper -->
@@ -258,8 +258,8 @@
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.6.4</version>
+            <scope>compile</scope>
 		</dependency>
-
 
         <!-- Dependencies for spring (IoC container) -->
         <dependency>

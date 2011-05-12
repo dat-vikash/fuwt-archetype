@@ -20,7 +20,7 @@ import java.io.StringReader;
 public class SampleWebServiceGateway extends WebServiceGatewaySupport
 {
 
-    @Resource(name = "infoByZipResponseExtractor")
+    @Resource(name = "javaInfoByZipResponseExtractor")
     private SourceExtractor<GetInfoByZipResponse> infoByZipResponseExtractor;
 
     /**
