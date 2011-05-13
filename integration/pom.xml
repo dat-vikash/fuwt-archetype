@@ -70,6 +70,11 @@
             <artifactId>jstl</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
 
         <!-- This is a rather powerful java based transformation engine
     for processing edi/object/xml/csv trandsformation -->

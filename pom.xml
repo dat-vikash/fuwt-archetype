@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fuwt</groupId>
@@ -29,6 +30,7 @@
         <fuwt.repo>http://payments.fuwt</fuwt.repo>
     </properties>
 
+
     <repositories>
         <repository>
             <id>fuwt-repo</id>
@@ -36,8 +38,8 @@
             <url>${fuwt.repo}</url>
         </repository>
         <repository>
-            <id>jboss2</id>
-            <name>JBoss Backup Repo</name>
+            <id>jboss</id>
+            <name>JBoss Repo</name>
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
         </repository>
         <repository>
@@ -121,6 +123,13 @@
                 <artifactId>milyn-smooks-all</artifactId>
                 <version>1.4</version>
                 <scope>compile</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.1.1</version>
             </dependency>
 
 
@@ -218,25 +227,25 @@
                 <scope>provided</scope>
             </dependency>
 
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-            <scope>provided</scope>
-		</dependency>
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>2.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
+                <scope>provided</scope>
+            </dependency>
 
 
         </dependencies>
@@ -246,20 +255,20 @@
 
 
         <!--  Joda Time -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>1.6.2</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- Jackson JSON Mapper -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.6.4</version>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>1.6.2</version>
             <scope>compile</scope>
-		</dependency>
+        </dependency>
+
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.6.4</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Dependencies for spring (IoC container) -->
         <dependency>
@@ -495,8 +504,8 @@
                 <version>6.1.22</version>
                 <configuration>
                     <useTestClasspath>true</useTestClasspath>
-                    <jettyEnvXml>integration-archetype/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
-                    <overrideWebXml>integration-archetype/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
+                    <jettyEnvXml>${project.basedir}/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
+                    <overrideWebXml>${project.basedir}/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
                 </configuration>
             </plugin>
 
@@ -539,6 +548,16 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <!-- TODO configure this for git-->
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 
