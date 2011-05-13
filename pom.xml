@@ -26,7 +26,7 @@
         <slf4j.version>1.6.1</slf4j.version>
         <hibernate.version>3.4.0.GA</hibernate.version>
 
-        <fuwt.repo>http://payments.fuwt</fuwt.repo>
+        <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
     </properties>
 
     <repositories>
@@ -36,9 +36,9 @@
             <url>${fuwt.repo}</url>
         </repository>
         <repository>
-            <id>jboss2</id>
-            <name>JBoss Backup Repo</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <id>jboss</id>
+            <name>JBoss Repo</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
         </repository>
         <repository>
             <id>camel-extra-release</id>
@@ -54,14 +54,14 @@
             <uniqueVersion>false</uniqueVersion>
             <id>fuwt-release</id>
             <name>Freelancers Repository</name>
-            <url>${fuwt.repo}</url>
+            <url>http://payments.dev.fuwt:8081/artifactory/libs-release-local</url>
             <layout>default</layout>
         </repository>
         <snapshotRepository>
             <uniqueVersion>true</uniqueVersion>
             <id>fuwt-snapshot</id>
             <name>Freelancers Snapshots</name>
-            <url>${fuwt.repo}</url>
+            <url>http://payments.dev.fuwt:8081/artifactory/libs-snapshot-local</url>
             <layout>default</layout>
         </snapshotRepository>
     </distributionManagement>
@@ -139,6 +139,13 @@
                 <scope>compile</scope>
             </dependency>
 
+             <dependency>
+                <groupId>org.apache.camel</groupId>
+                <artifactId>camel-spring</artifactId>
+                <version>${camel.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.apache.camel</groupId>
@@ -162,6 +169,7 @@
             </dependency>
 
             <dependency>
+                <!-- supports scheduling of routes -->
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-quartz</artifactId>
                 <version>${camel.version}</version>
@@ -209,14 +217,7 @@
             </dependency>
 
 
-            <!-- Dependency for JSP and JSTL specs, don't need to bundle these with the app
-      so they are scoped as provided -->
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-jsp_2.2_spec</artifactId>
-                <version>1.0</version>
-                <scope>provided</scope>
-            </dependency>
+
 
 		<!-- Servlet -->
 		<dependency>
@@ -225,6 +226,8 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+         <!-- Dependency for JSP and JSTL specs, don't need to bundle these with the app
+      so they are scoped as provided -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>

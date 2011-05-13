@@ -111,6 +111,18 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
         </dependency>
+
+        <dependency>
+            <!-- this packacge contains a special classloader needed for running camel in jboss-->
+            <groupId>org.apache.camel.extra</groupId>
+            <artifactId>camel-jboss</artifactId>
+        </dependency>
+
+        <dependency>
+            <!-- supports scheduling of routes -->
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-quartz</artifactId>
+        </dependency>
     </dependencies>
 
 

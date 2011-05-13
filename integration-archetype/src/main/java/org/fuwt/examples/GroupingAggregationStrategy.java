@@ -31,7 +31,7 @@ public class GroupingAggregationStrategy implements AggregationStrategy
             }
             else
             {
-                logger.trace("New exchange grouping is being statrted ");
+                logger.trace("New exchange grouping is being started ");
                 traceExchange(newExchange, "NEW");
 
                 XmlList list = new XmlList();
