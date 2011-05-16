@@ -82,7 +82,7 @@ public class SampleRoute extends RouteBuilder
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat(jaxbContext);
         jaxbDataFormat.setPrettyPrint(true);
         Smooks smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/smooks-sample.xml"));
-        from("jpa://examples.SampleModel?persistenceUnit=main" +
+        from("jpa://org.fuwt.examples.SampleModel?persistenceUnit=main" +
              "&consumer.namedQuery=getAllDirtySamples" +
              "&consumeDelete=false" +
              "&consumeLockEntity=false" +

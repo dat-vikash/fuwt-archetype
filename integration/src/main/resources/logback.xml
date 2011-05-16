@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property file="/etc/fuwt-archetype/app.properties"/>
+    <property file="/etc/integration-archetype/app.properties"/>
     <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
@@ -13,7 +13,7 @@
         <level value="${log.spring.level:-INFO}"/>
     </logger>
     <logger name="org.milyn" >
-        <level value="${log.smooks.level:-TRACE}"/>
+        <level value="${log.smooks.level:-INFO}"/>
     </logger>
     <logger name="org.fuwt" >
         <level value="${log.fuwt.level:-INFO}"/>

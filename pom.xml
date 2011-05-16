@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.fuwt</groupId>
@@ -26,8 +27,10 @@
         <slf4j.version>1.6.1</slf4j.version>
         <hibernate.version>3.4.0.GA</hibernate.version>
 
+        <git.user>cbarrese</git.user>
         <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
     </properties>
+
 
     <repositories>
         <repository>
@@ -35,18 +38,8 @@
             <name>Freelancers Repository</name>
             <url>${fuwt.repo}</url>
         </repository>
-        <repository>
-            <id>jboss</id>
-            <name>JBoss Repo</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>camel-extra-release</id>
-            <name>Camel Extra Maven repository of releases</name>
-            <url>http://camel-extra.googlecode.com/svn/maven2/releases</url>
-        </repository>
-
     </repositories>
+
 
     <distributionManagement>
         <downloadUrl>${fuwt.repo}</downloadUrl>
@@ -65,6 +58,12 @@
             <layout>default</layout>
         </snapshotRepository>
     </distributionManagement>
+
+    <scm>
+        <url>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</url>
+        <developerConnection>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</developerConnection>
+        <connection>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</connection>
+    </scm>
 
 
     <dependencyManagement>
@@ -124,6 +123,13 @@
             </dependency>
 
 
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.1.1</version>
+            </dependency>
+
+
             <!-- Dependency for Apache Camel, integration framework -->
             <dependency>
                 <groupId>org.apache.camel</groupId>
@@ -139,7 +145,7 @@
                 <scope>compile</scope>
             </dependency>
 
-             <dependency>
+            <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-spring</artifactId>
                 <version>${camel.version}</version>
@@ -217,29 +223,25 @@
             </dependency>
 
 
-
-
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-         <!-- Dependency for JSP and JSTL specs, don't need to bundle these with the app
-      so they are scoped as provided -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-            <scope>provided</scope>
-		</dependency>
+            <!-- Servlet -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>2.1</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
+                <scope>provided</scope>
+            </dependency>
 
 
         </dependencies>
@@ -249,20 +251,20 @@
 
 
         <!--  Joda Time -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>1.6.2</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- Jackson JSON Mapper -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.6.4</version>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>1.6.2</version>
             <scope>compile</scope>
-		</dependency>
+        </dependency>
+
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.6.4</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Dependencies for spring (IoC container) -->
         <dependency>
@@ -498,8 +500,8 @@
                 <version>6.1.22</version>
                 <configuration>
                     <useTestClasspath>true</useTestClasspath>
-                    <jettyEnvXml>integration-archetype/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
-                    <overrideWebXml>integration-archetype/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
+                    <jettyEnvXml>${project.basedir}/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
+                    <overrideWebXml>${project.basedir}/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
                 </configuration>
             </plugin>
 
@@ -536,12 +538,31 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.8</version>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <!-- will fork 1 process per test -->
                     <forkMode>always</forkMode>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <!-- TODO configure this for git-->
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 
