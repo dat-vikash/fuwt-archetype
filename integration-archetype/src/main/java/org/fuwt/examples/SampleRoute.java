@@ -29,8 +29,7 @@ public class SampleRoute extends RouteBuilder
     private static final Logger logger = LoggerFactory.getLogger(SampleRoute.class);
 
     @Override
-    public void configure() throws Exception
-    {
+    public void configure() throws Exception {
 
         if (logger.isDebugEnabled()) getContext().setTracing(true);
 
@@ -40,8 +39,7 @@ public class SampleRoute extends RouteBuilder
     }
 
 
-    private void startHttpInterfaceRoute()
-    {
+    private void startHttpInterfaceRoute(){
         //This route will read in an http request and route based on
         //the magic word paramter passed in.  If the route throws an exception
         //it will be handled by the onException block and return a 500 HTTP response
@@ -73,40 +71,40 @@ public class SampleRoute extends RouteBuilder
     }
 
 
-    private void startJPAPollingRoute() throws JAXBException, IOException, SAXException
-    {
+    private void startJPAPollingRoute() throws JAXBException, IOException, SAXException {
         //This route will continually poll the SampleModel DB table and consume
         // any samples marked as not syncd (i.e. "dirty").  It will then marshall that
         // POJO to xml and transform the xml to html using smooks.
         JAXBContext jaxbContext = JAXBContext.newInstance(SampleModel.class, XmlList.class);
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat(jaxbContext);
         jaxbDataFormat.setPrettyPrint(true);
-        Smooks smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/smooks-sample.xml"));
+        //Smooks smooks = new Smooks(getClass().getResourceAsStream());
         from("jpa://org.fuwt.examples.SampleModel?persistenceUnit=main" +
              "&consumer.namedQuery=getAllDirtySamples" +
              "&consumeDelete=false" +
              "&consumeLockEntity=false" +
-             "&consumer.delay=30000")
+             "&consumer.delay={{examples.sampleroute.jpapolldelay}}")
                 .transacted()
                 .routeId("sampleroute2")
                         //aggregate the consumed JPA records based on the time of the that batch the
                         //was consumed
                 .aggregate(property("CamelCreatedTimestamp"), new GroupingAggregationStrategy())
                 .completionFromBatchConsumer()
+                .to("log:org.fuwt.examples?level=DEBUG&showAll=true")
                 .marshal(jaxbDataFormat)
                 .to("log:org.fuwt.examples?level=INFO&showAll=true")
-                .process(new SmooksProcessor(smooks, getContext()))
+                .to("smooks://META-INF/smooks/examples/smooks-sample.xml")
                 .to("log:org.fuwt.examples?level=INFO")
                 .to("activemq:queue:TEST?testConnectionOnStartup=true");
     }
 
 
-    private void startActiveMQRoute()
-    {
+    private void startActiveMQRoute(){
         //testing activemq connections
         from("activemq:queue:TEST?testConnectionOnStartup=true")
                 .routeId("TEST")
                 .log("Made it all the way here")
-                .to("log:org.fuwt.examples?level=INFO");
+                .to("log:org.fuwt.examples?level=INFO")
+                .to("mock:endofsaleforcequeue");
     }
 }

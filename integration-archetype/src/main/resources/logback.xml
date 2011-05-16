@@ -6,17 +6,17 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <logger name="org.apache.camel" >
+    <logger name="org.apache.camel">
         <level value="${log.camel.level:-INFO}"/>
     </logger>
     <logger name="org.springframework">
         <level value="${log.spring.level:-INFO}"/>
     </logger>
-    <logger name="org.milyn" >
+    <logger name="org.milyn">
         <level value="${log.smooks.level:-INFO}"/>
     </logger>
-    <logger name="org.fuwt" >
-        <level value="${log.fuwt.level:-INFO}"/>
+    <logger name="org.fuwt">
+        <level value="${log.fuwt.level:-TRACE}"/>
     </logger>
     <root>
         <level value="${log.root.level:-INFO}"/>

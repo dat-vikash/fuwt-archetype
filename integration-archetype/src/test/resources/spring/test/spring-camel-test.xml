@@ -10,8 +10,9 @@
     <bean id="mockAllEndpoints" class="org.apache.camel.impl.InterceptSendToMockEndpointStrategy"/>
 
     <camel:camelContext>
+        <camel:propertyPlaceholder location="classpath:default.properties,classpath:test.properties" id="routeProperties"/>
         <camel:route id="pingRoute">
-            <camel:from uri="jetty:http://localhost:8888/ping"/>
+            <camel:from uri="jetty:http://localhost:9999/ping"/>
             <camel:transform>
                 <camel:constant>PONG</camel:constant>
             </camel:transform>

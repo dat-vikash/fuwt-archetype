@@ -10,6 +10,6 @@ to any core Spring configuration -->
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-    <context:property-placeholder location="classpath*:default.properties" />
+    <context:property-placeholder location="classpath*:default.properties,classpath*:test.properties" />
 
 </beans>

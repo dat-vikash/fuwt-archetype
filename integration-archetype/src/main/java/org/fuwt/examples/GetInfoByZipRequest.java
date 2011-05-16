@@ -10,29 +10,24 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Date: 5/10/11
  * Time: 7:45 PM
  */
-@XmlRootElement(name = "GetInfoByZIP",namespace = "http://www.webserviceX.NET")
+@XmlRootElement(name = "GetInfoByZIP", namespace = "http://www.webserviceX.NET")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class GetInfoByZipRequest
-{
+public class GetInfoByZipRequest {
     @XmlElement(name = "USZip")
     private String usZip;
 
-    public GetInfoByZipRequest()
-    {
+    public GetInfoByZipRequest() {
     }
 
-    public GetInfoByZipRequest(final String usZip)
-    {
+    public GetInfoByZipRequest(final String usZip) {
         this.usZip = usZip;
     }
 
-    public String getUsZip()
-    {
+    public String getUsZip() {
         return usZip;
     }
 
-    public void setUsZip(final String usZip)
-    {
+    public void setUsZip(final String usZip) {
         this.usZip = usZip;
     }
 

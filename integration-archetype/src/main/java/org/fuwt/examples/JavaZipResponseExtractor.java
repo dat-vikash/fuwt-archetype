@@ -17,33 +17,28 @@ import java.io.IOException;
  * Time: 9:17 PM
  */
 @Component("javaInfoByZipResponseExtractor")
-public class JavaZipResponseExtractor implements SourceExtractor<GetInfoByZipResponse>
-{
+public class JavaZipResponseExtractor implements SourceExtractor<GetInfoByZipResponse> {
 
-    private static final Logger logger= LoggerFactory.getLogger(JavaZipResponseExtractor.class);
+    private static final Logger logger = LoggerFactory.getLogger(JavaZipResponseExtractor.class);
 
     private final Smooks smooks;
 
-    public JavaZipResponseExtractor()
-    {
-        try
-        {
-            smooks=new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
+    public JavaZipResponseExtractor() {
+        try {
+            smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
         }
-        catch (Throwable t)
-        {
+        catch (Throwable t) {
             throw new IllegalStateException("Unable to initialize smooks instance for " +
-                                            "java-webservice-response-mapping.xml",t);
+                                            "java-webservice-response-mapping.xml", t);
         }
     }
 
-    public GetInfoByZipResponse extractData(final Source source) throws IOException, TransformerException
-    {
+    public GetInfoByZipResponse extractData(final Source source) throws IOException, TransformerException {
 
-        JavaResult javaResult=new JavaResult();
-        smooks.filterSource(source,javaResult);
+        JavaResult javaResult = new JavaResult();
+        smooks.filterSource(source, javaResult);
 
-        if(logger.isTraceEnabled())
+        if (logger.isTraceEnabled())
             logger.trace("Result of GetInfoByZipResponse transformation from XML to JAVA [" + javaResult + "]");
 
         return (GetInfoByZipResponse) javaResult.getBean("getInfoByZipResponse");

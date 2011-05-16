@@ -9,31 +9,26 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Time: 9:19 PM
  */
 @XmlRootElement
-public class GetInfoByZipResponse
-{
+public class GetInfoByZipResponse {
 
-    @XmlElement
     private String city;
-    @XmlElement
     private String state;
 
-    public void setCity(final String city)
-    {
+    public void setCity(final String city) {
         this.city = city;
     }
 
-    public void setState(final String state)
-    {
+    public void setState(final String state) {
         this.state = state;
     }
 
-    public String getCity()
-    {
+    @XmlElement
+    public String getCity() {
         return city;
     }
 
-    public String getState()
-    {
+    @XmlElement
+    public String getState() {
         return state;
     }
 }

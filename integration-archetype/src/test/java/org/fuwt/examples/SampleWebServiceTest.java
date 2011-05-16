@@ -7,11 +7,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.test.client.MockWebServiceServer;
 
-
-import static org.hamcrest.Matchers.equalToIgnoringCase;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static net.javacrumbs.smock.common.client.CommonSmockClient.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 
 
 /**
