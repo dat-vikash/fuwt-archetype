@@ -11,6 +11,9 @@ import org.springframework.mock.jndi.SimpleNamingContextBuilder;
 import javax.jms.ConnectionFactory;
 
 /**
+ * Supports running local integration tests by bootstrapping the encessary JNDI
+ * components needed to support the integration framework
+ *
  * User: chris
  * Date: 5/13/11
  * Time: 1:08 AM

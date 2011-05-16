@@ -1,7 +1,7 @@
 <html>
 <head></head>
 <body>
-    <#list samples.sample as x >
+    <#list list.listitem as x >
 
         Processed sample ${x.@id}
         <br/>

@@ -15,7 +15,7 @@
     <bean id="packageScanClassResolver" class="${camel.packagescanresolver}"/>
 
     <camel:camelContext id="camel">
-        <!--camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration-archetype/app.properties" id="routeProperties"/-->
+        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration/app.properties" id="routeProperties"/>
 
         <!-- TODO: Replace with more specific scan to your app -->
         <camel:contextScan>

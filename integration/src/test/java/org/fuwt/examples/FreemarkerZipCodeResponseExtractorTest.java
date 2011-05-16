@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -22,10 +23,10 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:/META-INF/spring/spring-core.xml")
-public class JavaZipResponseExtractorTest
+public class FreemarkerZipCodeResponseExtractorTest
 {
-    @Resource(name = "javaInfoByZipResponseExtractor")
-    private SourceExtractor<GetInfoByZipResponse> extractor;
+    @Resource(name = "xmlInfoByZipResponseExtractor")
+    private SourceExtractor<String> extractor;
 
     @Test
     public void shouldConvertResponseFromXMLToJava() throws TransformerException, IOException
@@ -38,9 +39,8 @@ public class JavaZipResponseExtractorTest
                                           "</Table></NewDataSet>" +
                                           "</GetInfoByZIPResult>" +
                                           "</GetInfoByZIPResponse>";
-        GetInfoByZipResponse response=extractor.extractData(new StringSource(testSoapResponseBody));
-        assertThat(response.getCity(), is(equalTo("Jersey City")));
-        assertThat(response.getState(), is(equalTo("NJ")));
+        String extract=extractor.extractData(new StringSource(testSoapResponseBody));
+        assertThat(extract,containsString("Jersey City"));
 
     }
 }

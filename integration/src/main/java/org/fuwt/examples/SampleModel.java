@@ -19,8 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "sample")
 @Entity
 @NamedQuery(name = "getAllDirtySamples", query = "select s from SampleModel s where s.syncd=false ")
-public class SampleModel
-{
+public class SampleModel {
 
 
     private String id;
@@ -28,12 +27,10 @@ public class SampleModel
     private boolean syncd;
 
 
-    public SampleModel()
-    {
+    public SampleModel() {
     }
 
-    public SampleModel(final String name, final boolean syncd)
-    {
+    public SampleModel(final String name, final boolean syncd) {
         this.name = name;
         this.syncd = syncd;
     }
@@ -43,41 +40,34 @@ public class SampleModel
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
     @XmlAttribute
-    public String getId()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId(final String id)
-    {
+    public void setId(final String id) {
         this.id = id;
     }
 
     @Column
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(final String name)
-    {
+    public void setName(final String name) {
         this.name = name;
     }
 
     @Column
-    public boolean isSyncd()
-    {
+    public boolean isSyncd() {
         return syncd;
     }
 
-    public void setSyncd(final boolean syncd)
-    {
+    public void setSyncd(final boolean syncd) {
         this.syncd = syncd;
     }
 
     @Consumed
-    public void markAsSynchronized()
-    {
+    public void markAsSynchronized() {
         this.syncd = true;
     }
 }

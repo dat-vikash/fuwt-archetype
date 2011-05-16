@@ -6,13 +6,11 @@ import java.util.List;
 
 @XmlRootElement(name = "list")
 @XmlAccessorType(value = XmlAccessType.FIELD)
-public class XmlList
-{
-    @XmlElements(value = {@XmlElement(name = "list-item", type = SampleModel.class)})
+public class XmlList {
+    @XmlElements(value = {@XmlElement(name = "listitem", type = SampleModel.class)})
     private List listItems = new ArrayList();
 
-    public List listItems()
-    {
+    public List listItems() {
         return listItems;
     }
 

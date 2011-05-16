@@ -17,8 +17,7 @@ import java.io.StringReader;
  * Date: 5/10/11
  * Time: 7:29 PM
  */
-public class SampleWebServiceGateway extends WebServiceGatewaySupport
-{
+public class SampleWebServiceGateway extends WebServiceGatewaySupport {
 
     @Resource(name = "javaInfoByZipResponseExtractor")
     private SourceExtractor<GetInfoByZipResponse> infoByZipResponseExtractor;
@@ -30,39 +29,33 @@ public class SampleWebServiceGateway extends WebServiceGatewaySupport
      * always include namespaces in this way.  This is an example of why sometimes strict
      * framework binding can back you into a corner, and is a case for sticking to Spring's
      * lower level WebServiceTemplate to handle these cases.
-     *
+     * <p/>
      * Feel free to change this class to marshall this request to watch it fail.
      *
      * @param request - the request that will be turned into a SOAP message
      * @return marshalled Source for the GetInfoByZipRequest
      */
-    private Source marshall(GetInfoByZipRequest request)
-    {
+    private Source marshall(GetInfoByZipRequest request) {
 
         StringResult result = new StringResult();
 
-        try
-        {
+        try {
             getMarshaller().marshal(request, result);
             return new StreamSource(new StringReader(result.toString()));
-
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             throw new IllegalStateException("Unable to marshall GetInfoByZipRequest: " + request.toString());
         }
 
     }
 
 
-    public GetInfoByZipResponse getCityAndStateFromZip(final String zipcode)
-    {
+    public GetInfoByZipResponse getCityAndStateFromZip(final String zipcode) {
 
         SoapActionCallback soapActionCallback = new SoapActionCallback("http://www.webserviceX.NET/GetInfoByZIP");
         //Since this sample web service provider can't handle namespace prefixes can't use JAXB here.
         String request = new StringBuilder().append("<GetInfoByZIP xmlns=\"http://www.webserviceX.NET\">")
                 .append("<USZip>").append(zipcode).append("</USZip></GetInfoByZIP>").toString();
-
 
 
         return getWebServiceTemplate().sendSourceAndReceive(new StringSource(request),

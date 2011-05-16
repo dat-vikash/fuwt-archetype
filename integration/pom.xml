@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>org.fuwt</groupId>
-            <artifactId>integration</artifactId>
+            <artifactId>integration-libs</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -27,7 +27,7 @@
     </dependencies>
 
     <build>
-        <finalName>integration-archetype</finalName>
+        <finalName>integration</finalName>
     </build>
 
 </project>
