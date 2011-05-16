@@ -17,13 +17,15 @@ import java.io.IOException;
  * Time: 9:17 PM
  */
 @Component("javaInfoByZipResponseExtractor")
-public class JavaZipResponseExtractor implements SourceExtractor<GetInfoByZipResponse> {
+public class JavaZipCodeResponseExtractor implements SourceExtractor<GetInfoByZipResponse> {
 
-    private static final Logger logger = LoggerFactory.getLogger(JavaZipResponseExtractor.class);
+    private static final Logger logger = LoggerFactory.getLogger(JavaZipCodeResponseExtractor.class);
 
     private final Smooks smooks;
 
-    public JavaZipResponseExtractor() {
+    public JavaZipCodeResponseExtractor() {
+        //need to initialize smooks transformation engine and ideally this is done only once
+        //this instance will be specific for this transformation
         try {
             smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
         }
@@ -41,6 +43,8 @@ public class JavaZipResponseExtractor implements SourceExtractor<GetInfoByZipRes
         if (logger.isTraceEnabled())
             logger.trace("Result of GetInfoByZipResponse transformation from XML to JAVA [" + javaResult + "]");
 
+        //the bean id used to reyrieve the result is defined in the smooks mapping xml
+        //that was initialized in the constructor
         return (GetInfoByZipResponse) javaResult.getBean("getInfoByZipResponse");
     }
 }

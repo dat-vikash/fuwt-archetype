@@ -22,7 +22,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath*:/META-INF/spring/spring-core.xml")
-public class JavaZipResponseExtractorTest
+public class JavaZipCodeResponseExtractorTest
 {
     @Resource(name = "javaInfoByZipResponseExtractor")
     private SourceExtractor<GetInfoByZipResponse> extractor;

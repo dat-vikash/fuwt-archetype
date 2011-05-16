@@ -17,13 +17,15 @@ import java.io.IOException;
  * Time: 9:17 PM
  */
 @Component("xmlInfoByZipResponseExtractor")
-public class XmlZipResponseExtractor implements SourceExtractor<String> {
+public class XmlZipCodeResponseExtractor implements SourceExtractor<String> {
 
-    private static final Logger logger = LoggerFactory.getLogger(XmlZipResponseExtractor.class);
+    private static final Logger logger = LoggerFactory.getLogger(XmlZipCodeResponseExtractor.class);
 
     private final Smooks smooks;
 
-    public XmlZipResponseExtractor() {
+    public XmlZipCodeResponseExtractor() {
+        //need to initialize smooks transformation engine and ideally this is done only once
+        //this instance will be specific for this transformation
         try {
             smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
         }
