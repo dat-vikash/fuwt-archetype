@@ -26,7 +26,7 @@
         <slf4j.version>1.6.1</slf4j.version>
         <hibernate.version>3.4.0.GA</hibernate.version>
 
-        <git.user>cbarrese</git.user>
+        <git.user>${user.name}</git.user>
         <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
     </properties>
 
