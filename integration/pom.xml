@@ -10,9 +10,9 @@
         <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>integration-archetype</artifactId>
+    <artifactId>integration</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>integration-archetype</name>
+    <name>integration</name>
 
     <packaging>war</packaging>
 

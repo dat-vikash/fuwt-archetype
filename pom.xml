@@ -14,9 +14,9 @@
 
     <modules>
         <module>integration</module>
-        <module>web</module>
+        <module>integration-libs</module>
+        <module>web-libs</module>
         <module>security</module>
-        <module>integration-archetype</module>
     </modules>
 
 

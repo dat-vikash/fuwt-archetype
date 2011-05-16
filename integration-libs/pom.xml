@@ -10,9 +10,9 @@
         <relativePath>..</relativePath>
     </parent>
 
-    <artifactId>integration</artifactId>
+    <artifactId>integration-libs</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>integration</name>
+    <name>integration-libs</name>
 
     <packaging>jar</packaging>
 
