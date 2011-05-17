@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body>
+        <GetInfoByZIPResponse xmlns="http://www.webserviceX.NET">
+            <GetInfoByZIPResult>
+                <NewDataSet xmlns="">
+                    <Table>
+                        <CITY>Jersey City</CITY>
+                        <STATE>NJ</STATE>
+                        <ZIP>07302</ZIP>
+                        <AREA_CODE>201</AREA_CODE>
+                        <TIME_ZONE>E</TIME_ZONE>
+                    </Table>
+                </NewDataSet>
+            </GetInfoByZIPResult>
+        </GetInfoByZIPResponse>
+    </soap:Body>
+</soap:Envelope>
