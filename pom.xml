@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +14,7 @@
 
     <modules>
         <module>integration-examples</module>
-        <module>integration-quickstart</module>
+        <module>integration-quickstart-template</module>
         <module>integration-libs</module>
         <module>web-libs</module>
         <module>security-libs</module>
@@ -514,6 +515,7 @@
             <plugin>
                 <groupId>org.twdata.maven</groupId>
                 <artifactId>maven-cli-plugin</artifactId>
+                <version>1.0.6</version>
             </plugin>
 
             <!-- Stock maven pluging declared here to configure java source and target version -->

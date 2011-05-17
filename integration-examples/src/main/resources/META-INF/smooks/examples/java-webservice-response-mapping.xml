@@ -6,6 +6,7 @@
     xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd"
 	xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.2.xsd">
 
+    <core:filterSettings type="DOM" defaultSerialization="false" />
 
 
     <jb:bean beanId="getInfoByZipResponse" class="org.fuwt.examples.GetInfoByZipResponse" createOnElement="GetInfoByZIPResult">

@@ -22,6 +22,11 @@ public class SampleWebServiceGateway extends WebServiceGatewaySupport {
     @Resource(name = "javaInfoByZipResponseExtractor")
     private SourceExtractor<GetInfoByZipResponse> infoByZipResponseExtractor;
 
+
+    public void setInfoByZipResponseExtractor(SourceExtractor<GetInfoByZipResponse> infoByZipResponseExtractor) {
+        this.infoByZipResponseExtractor = infoByZipResponseExtractor;
+    }
+
     /**
      * I stopped calling this method because the test web service I choose happens
      * not to implement the web service spec correctly.  They are not handlined the xml namespace

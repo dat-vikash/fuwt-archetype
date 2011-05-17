@@ -17,10 +17,9 @@
     <camel:camelContext id="camel">
         <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration/app.properties" id="routeProperties"/>
 
-        <!-- TODO: Replace with more specific scan to your app -->
         <camel:contextScan>
             <camel:includes>
-                org.fuwt.examples.**Route
+                org.fuwt.integration.**Route
             </camel:includes>
         </camel:contextScan>
     </camel:camelContext>

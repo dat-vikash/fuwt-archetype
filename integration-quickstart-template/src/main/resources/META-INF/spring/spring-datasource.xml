@@ -13,7 +13,8 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="main"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
@@ -31,11 +32,13 @@
      choose to update it here or update property in default.properties file -->
     <jee:jndi-lookup id="dataSource" jndi-name="${jndi.jpa.datasource}"/>
 
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
 
-
+    <!-- Provides the ability to use declarative transactions using
+    the @Transactional annotation -->
     <tx:annotation-driven/>
 
     <jee:jndi-lookup id="mqConnectionFactory" jndi-name="jms/connectionFactory"/>

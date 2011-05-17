@@ -20,21 +20,5 @@
         </property>
     </bean>
 
-    <!--TODO this is the wiring of a sample web service gateway used to call a free SOAP
-  web service to decode zip codes.  You should modify/remove this block from your
-   project -->
-    <bean id="sampleWebServiceGateway" class="org.fuwt.examples.SampleWebServiceGateway">
-        <property name="defaultUri" value="http://www.webservicex.net/uszip.asmx"/>
-        <property name="marshaller">
-            <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-                <property name="classesToBeBound">
-                    <list>
-                        <value>org.fuwt.examples.GetInfoByZipRequest</value>
-                    </list>
-                </property>
-            </bean>
-        </property>
-    </bean>
-
 
 </beans>

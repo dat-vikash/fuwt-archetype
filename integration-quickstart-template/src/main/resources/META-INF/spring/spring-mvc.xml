@@ -74,11 +74,13 @@ and integrating with Freemarker template engine to return views from those reque
                     <property name="contentType" value="application/json"/>
                 </bean>
 
+
+                <!-- TODO Configuration for marshalling Java objects as XML using JAXB.  Uncomment and
+                      add classes configured with JAXB annotations to the classesToBeBound list below
                 <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
                     <property name="contentType" value="application/xml"/>
 
-                    <!-- TODO Configuration for marshalling Java objects as XML using JAXB.  Uncomment and
-                      add classes configured with JAXB annotations to the classesToBeBound list below-->
+
                     <property name="marshaller">
                         <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
                             <property name="classesToBeBound">
@@ -90,6 +92,7 @@ and integrating with Freemarker template engine to return views from those reque
 
                     </property>
                 </bean>
+                -->
             </list>
         </property>
     </bean>
