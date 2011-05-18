@@ -1,5 +1,6 @@
 package org.fuwt.examples;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class SampleWebServiceIT
     SampleWebServiceGateway webServiceGateway;
 
     @Test
+    @Ignore("Takes too long to run reliably during build")
     public void shouldReturnStateAndCityForZip07302()
     {
         GetInfoByZipResponse response = webServiceGateway.getCityAndStateFromZip("07302");
