@@ -19,7 +19,7 @@
     </resource-config>
 
     <ftl:freemarker applyOnElement="GetInfoByZIPResponse">
-        <ftl:template >/META-INF/smooks/get-info-for-zip-response.ftl</ftl:template>
+        <ftl:template >/META-INF/smooks/examples/get-info-for-zip-response.ftl</ftl:template>
     </ftl:freemarker>
 
 

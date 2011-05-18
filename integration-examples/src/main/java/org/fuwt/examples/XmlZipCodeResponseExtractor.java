@@ -27,11 +27,11 @@ public class XmlZipCodeResponseExtractor implements SourceExtractor<String> {
         //need to initialize smooks transformation engine and ideally this is done only once
         //this instance will be specific for this transformation
         try {
-            smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/java-webservice-response-mapping.xml"));
+            smooks = new Smooks(getClass().getResourceAsStream("/META-INF/smooks/examples/ftl-webservice-response-mapping.xml"));
         }
         catch (Throwable t) {
             throw new IllegalStateException("Unable to initialize smooks instance for " +
-                                            "java-webservice-response-mapping.xml", t);
+                                            "ftl-webservice-response-mapping.xml", t);
         }
     }
 
