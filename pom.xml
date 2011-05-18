@@ -38,7 +38,6 @@
         <repository>
             <id>fuwt-repo</id>
             <name>Freelancers Repository</name>
-            <url>${fuwt.repo}</url>
         </repository>
     </repositories>
 
@@ -62,9 +61,9 @@
     </distributionManagement>
 
     <scm>
-        <url>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</url>
-        <developerConnection>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</developerConnection>
-        <connection>scm:git:http://${git.user}@repositories.fuwt/git/fuwt-archetype.git</connection>
+        <url>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</url>
+        <developerConnection>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</developerConnection>
+        <connection>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</connection>
     </scm>
 
 
@@ -568,7 +567,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <!-- TODO configure this for git-->
+                    <tagBase>git+ssh://repositories.fuwt/git/fuwt-archetype.git</tagBase>
                 </configuration>
             </plugin>
 
