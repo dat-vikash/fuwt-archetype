@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.fuwt</groupId>
         <artifactId>core-pom</artifactId>
-        <version>1.1</version>
+        <version>1.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
     <artifactId>security-libs</artifactId>
-    <version>1.1</version>
+    <version>1.1-SNAPSHOT</version>
     <name>security-libs</name>
 
     <packaging>jar</packaging>
