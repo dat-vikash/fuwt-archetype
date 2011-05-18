@@ -15,6 +15,7 @@
     <modules>
         <module>integration-examples</module>
         <module>integration-quickstart-template</module>
+        <module>integration-quickstart</module>
         <module>integration-libs</module>
         <module>web-libs</module>
         <module>security-libs</module>
