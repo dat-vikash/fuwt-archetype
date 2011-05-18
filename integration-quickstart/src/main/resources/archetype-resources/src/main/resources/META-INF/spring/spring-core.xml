@@ -1,3 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This configuration is the "main" Spring config which will import all the other configuration files and be home
 to any core Spring configuration -->
@@ -14,7 +17,7 @@ to any core Spring configuration -->
     <!-- TODO Configure this with the packages in your project that should be scanned for annotations, wither
     Apache Camel or Spring
     -->
-    <context:component-scan base-package="org.fuwt"/>
+    <context:component-scan base-package="${package}"/>
 
     <!-- reads properties files used to configure spring managed part of the app and the web.xml
          This configuration offers the most flexibility by first loading a default properties file
@@ -32,8 +35,8 @@ to any core Spring configuration -->
             <list>
                 <value>classpath:default.properties</value>
                 <!-- TODO: replace with properties file name for your app -->
-                <value>file:/etc/integration-quickstart-template/app.properties</value>
-                <value>${config}</value>
+                <value>file:/etc/${artifactId}/app.properties</value>
+                <value>${symbol_dollar}{config}</value>
             </list>
         </property>
     </bean>

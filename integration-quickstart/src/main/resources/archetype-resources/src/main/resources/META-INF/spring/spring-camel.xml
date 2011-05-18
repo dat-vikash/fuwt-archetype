@@ -1,3 +1,6 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -12,14 +15,14 @@
     property-placeholder.  The default.properties file contains the Camel default.  This is configurable because
     if we are running in JBoss we need to use a special resolver due to classpath resolver conflicts, but that same
     resolver won't work for unit tests, so we need to configure based on env-->
-    <bean id="packageScanClassResolver" class="${camel.packagescanresolver}"/>
+    <bean id="packageScanClassResolver" class="${symbol_dollar}{camel.packagescanresolver}"/>
 
     <camel:camelContext id="camel">
-        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration-quickstart-template/app.properties" id="routeProperties"/>
+        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/${artifactId}/app.properties" id="routeProperties"/>
 
         <camel:contextScan>
             <camel:includes>
-                org.fuwt.**Route
+                ${package}.**Route
             </camel:includes>
         </camel:contextScan>
     </camel:camelContext>
