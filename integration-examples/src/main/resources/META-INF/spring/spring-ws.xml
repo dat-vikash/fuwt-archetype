@@ -20,9 +20,13 @@
         </property>
     </bean>
 
+
    <!--This is the wiring of a sample web service gateway used to call a free SOAP
   web service to decode zip codes.  -->
     <bean id="sampleWebServiceGateway" class="org.fuwt.examples.SampleWebServiceGateway">
+        <property name="webServiceTemplate" >
+           <bean class="org.fuwt.examples.SOAPWebServiceTemplate"/>
+        </property>
         <property name="defaultUri" value="http://www.webservicex.net/uszip.asmx"/>
         <property name="infoByZipResponseExtractor" ref="javaInfoByZipResponseExtractor" />
         <property name="marshaller">

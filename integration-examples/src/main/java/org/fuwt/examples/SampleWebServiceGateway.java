@@ -1,13 +1,19 @@
 package org.fuwt.examples;
 
+import org.springframework.ws.WebServiceMessage;
 import org.springframework.ws.client.core.SourceExtractor;
+import org.springframework.ws.client.core.WebServiceMessageCallback;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 import org.springframework.xml.transform.StringResult;
 import org.springframework.xml.transform.StringSource;
 
 import javax.annotation.Resource;
 import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.io.StringReader;
@@ -27,6 +33,12 @@ public class SampleWebServiceGateway extends WebServiceGatewaySupport {
         this.infoByZipResponseExtractor = infoByZipResponseExtractor;
     }
 
+
+    public SOAPWebServiceTemplate getSOAPWebServiceTemplate()
+    {
+        return (SOAPWebServiceTemplate)getWebServiceTemplate();
+    }
+
     /**
      * I stopped calling this method because the test web service I choose happens
      * not to implement the web service spec correctly.  They are not handlined the xml namespace
@@ -42,7 +54,7 @@ public class SampleWebServiceGateway extends WebServiceGatewaySupport {
      */
     private Source marshall(GetInfoByZipRequest request) {
 
-        StringResult result = new StringResult();
+        final StringResult result = new StringResult();
 
         try {
             getMarshaller().marshal(request, result);
@@ -57,14 +69,14 @@ public class SampleWebServiceGateway extends WebServiceGatewaySupport {
 
     public GetInfoByZipResponse getCityAndStateFromZip(final String zipcode) {
 
-        SoapActionCallback soapActionCallback = new SoapActionCallback("http://www.webserviceX.NET/GetInfoByZIP");
         //Since this sample web service provider can't handle namespace prefixes can't use JAXB here.
-        String request = new StringBuilder().append("<GetInfoByZIP xmlns=\"http://www.webserviceX.NET\">")
+        final String request = new StringBuilder().append("<GetInfoByZIP xmlns=\"http://www.webserviceX.NET\">")
                 .append("<USZip>").append(zipcode).append("</USZip></GetInfoByZIP>").toString();
 
 
-        return getWebServiceTemplate().sendSourceAndReceive(new StringSource(request),
-                                                            soapActionCallback,
+
+        return getSOAPWebServiceTemplate().sendSourceAndReceive(new StringSource(request),
+                                                             new StringSource(request),
                                                             infoByZipResponseExtractor);
 
     }

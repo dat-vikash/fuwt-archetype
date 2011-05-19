@@ -16,7 +16,7 @@
         <level value="${log.smooks.level:-INFO}"/>
     </logger>
     <logger name="org.fuwt">
-        <level value="${log.fuwt.level:-TRACE}"/>
+        <level value="${log.fuwt.level:-INFO}"/>
     </logger>
     <root>
         <level value="${log.root.level:-INFO}"/>
