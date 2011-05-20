@@ -3,6 +3,7 @@ package org.fuwt.examples;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.milyn.payload.StringSource;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ws.client.core.SourceExtractor;
@@ -30,6 +31,7 @@ public class JavaZipCodeResponseExtractorTest
     @Test
     public void shouldConvertResponseFromXMLToJava() throws TransformerException, IOException
     {
+
         final String testSoapResponseBody="<GetInfoByZIPResponse xmlns=\"http://www.webserviceX.NET\">" +
                                           "<GetInfoByZIPResult>" +
                                           "<NewDataSet xmlns=\"\">" +

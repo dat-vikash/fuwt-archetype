@@ -20,7 +20,7 @@ import java.io.IOException;
  * Date: 5/19/11
  * Time: 11:26 AM
  * <p/>
- * Extension of Spring webservice template to support nicer method signatures for dealing with
+ * Extension of Spring WebServiceTemplate to support nicer method signatures for dealing with
  * SOAP header and SOAP action
  */
 public class SOAPWebServiceTemplate extends WebServiceTemplate {
