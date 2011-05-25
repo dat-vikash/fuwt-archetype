@@ -10,7 +10,7 @@
         <level value="${log.camel.level:-INFO}"/>
     </logger>
     <logger name="org.springframework">
-        <level value="${log.spring.level:-INFO}"/>
+        <level value="${log.spring.level:-TRACE}"/>
     </logger>
     <logger name="org.milyn">
         <level value="${log.smooks.level:-INFO}"/>
