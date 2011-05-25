@@ -30,5 +30,19 @@
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
+    <resource-ref>
+        <res-ref-name>jdbc/testDS</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+
+    <resource-ref>
+        <res-ref-name>jms/connectionFactory</res-ref-name>
+        <res-type>javax.jms.ConnectionFactory</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
+
 
 </web-app>

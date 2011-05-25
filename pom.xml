@@ -73,9 +73,9 @@
     </distributionManagement>
 
     <scm>
-        <url>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</url>
-        <developerConnection>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</developerConnection>
-        <connection>scm:git:git+ssh://repositories.fuwt/git/fuwt-archetype.git</connection>
+        <url>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</url>
+        <developerConnection>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</developerConnection>
+        <connection>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</connection>
     </scm>
 
 

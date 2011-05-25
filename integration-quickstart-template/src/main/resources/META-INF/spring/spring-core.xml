@@ -11,7 +11,7 @@ to any core Spring configuration -->
 
 
     <context:annotation-config/>
-    <!-- TODO Configure this with the packages in your project that should be scanned for annotations, wither
+    <!-- TODO Configure this with the packages in your project that should be scanned for annotations, either
     Apache Camel or Spring
     -->
     <context:component-scan base-package="org.fuwt"/>
@@ -31,7 +31,6 @@ to any core Spring configuration -->
         <property name="locations">
             <list>
                 <value>classpath:default.properties</value>
-                <!-- TODO: replace with properties file name for your app -->
                 <value>file:/etc/integration-quickstart-template/app.properties</value>
                 <value>${config}</value>
             </list>

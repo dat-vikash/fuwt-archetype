@@ -17,7 +17,7 @@
     <bean id="camelSilentPropertiesResolver" class="org.fuwt.examples.SilentPropertiesResolver"/>
 
     <camel:camelContext id="camel">
-        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration/app.properties" id="routeProperties"
+        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration-examples/app.properties" id="routeProperties"
                 propertiesResolverRef="camelSilentPropertiesResolver"/>
 
         <!-- TODO: Replace with more specific scan to your app -->

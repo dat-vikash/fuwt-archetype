@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property file="/etc/fuwt/app.properties"/>
+    <property file="/etc/${artifactId}/app.properties"/>
     <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
@@ -19,7 +19,7 @@
         <level value="${symbol_dollar}{log.smooks.level:-INFO}"/>
     </logger>
     <logger name="${package}">
-        <level value="${symbol_dollar}{log.fuwt.level:-TRACE}"/>
+        <level value="${symbol_dollar}{log.fuwt.level:-INFO}"/>
     </logger>
     <root>
         <level value="${symbol_dollar}{log.root.level:-INFO}"/>
