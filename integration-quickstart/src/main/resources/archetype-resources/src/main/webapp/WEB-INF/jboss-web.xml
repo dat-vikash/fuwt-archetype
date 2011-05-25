@@ -1,0 +1,21 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<jboss-web>
+    <class-loading>
+        <loader-repository>
+            org.myapp:classloader=integration
+            <loader-repository-config>java2ParentDelegation=false</loader-repository-config>
+        </loader-repository>
+    </class-loading>
+
+    <resource-ref>
+        <res-ref-name>jdbc/testDS</res-ref-name>
+        <jndi-name>java:jdbc/testDS</jndi-name>
+    </resource-ref>
+
+    <resource-ref>
+        <res-ref-name>jms/connectionFactory</res-ref-name>
+        <jndi-name>java:jms/connectionFactory</jndi-name>
+    </resource-ref>
+</jboss-web>
