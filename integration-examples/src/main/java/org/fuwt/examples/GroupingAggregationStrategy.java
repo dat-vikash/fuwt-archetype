@@ -1,6 +1,7 @@
 package org.fuwt.examples;
 
 import org.apache.camel.Exchange;
+import org.apache.camel.impl.DefaultExchange;
 import org.apache.camel.processor.aggregate.AggregationStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,8 @@ public class GroupingAggregationStrategy implements AggregationStrategy {
 
             XmlList list = (XmlList) oldExchange.getIn().getBody();
             list.listItems().add(newExchange.getIn().getBody());
-            newExchange.getOut().setBody(list);
+
+            newExchange.getIn().setBody(list);
         }
         else {
             logger.debug("New exchange grouping is being statrted ");
@@ -31,7 +33,9 @@ public class GroupingAggregationStrategy implements AggregationStrategy {
 
             XmlList list = new XmlList();
             list.listItems().add(newExchange.getIn().getBody());
-            newExchange.getOut().setBody(list);
+
+            newExchange.getIn().setBody(list);
+
         }
 
 
@@ -42,6 +46,6 @@ public class GroupingAggregationStrategy implements AggregationStrategy {
         String traceMessage = new StringBuilder()
                 .append(exchangeName)
                 .append("[in={} out={}]").toString();
-        logger.trace(traceMessage, exchange.getIn(), exchange.getOut());
+        logger.trace(traceMessage, exchange.getIn(), exchange.hasOut()?exchange.getOut():null);
     }
 }

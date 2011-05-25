@@ -571,6 +571,11 @@
                     <!-- TODO configure this for git-->
                 </configuration>
             </plugin>
+      <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>versions-maven-plugin</artifactId>
+      <version>1.2</version>
+    </plugin>
 
 
         </plugins>
