@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.fuwt</groupId>
         <artifactId>core-pom</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.1</version>
         <relativePath>..</relativePath>
     </parent>
 
     <artifactId>integration-quickstart-template</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <name>integration-quickstart-template</name>
 
     <packaging>war</packaging>
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.fuwt</groupId>
             <artifactId>integration-libs</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
 
 
