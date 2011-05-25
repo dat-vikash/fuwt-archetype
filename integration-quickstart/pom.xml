@@ -4,7 +4,7 @@
 
   <groupId>org.fuwt</groupId>
   <artifactId>integration-quickstart-template-archetype</artifactId>
-  <version>1.1</version>
+  <version>1.2-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>integration-quickstart-template-archetype</name>
