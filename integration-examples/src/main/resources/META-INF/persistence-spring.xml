@@ -6,6 +6,7 @@
              version="1.0">
 
     <persistence-unit name="main">
+        <class>org.fuwt.examples.SampleModel</class>
 
     </persistence-unit>
 
