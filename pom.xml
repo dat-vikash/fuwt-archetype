@@ -73,9 +73,9 @@
     </distributionManagement>
 
     <scm>
-        <url>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</url>
-        <developerConnection>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</developerConnection>
-        <connection>scm:git:ssh://repositories.fuwt/git/fuwt-archetype.git</connection>
+        <url>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</url>
+        <developerConnection>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</developerConnection>
+        <connection>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</connection>
     </scm>
 
 
@@ -609,7 +609,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <tagBase>git:ssh://repositories.fuwt/git/fuwt-archetype.git</tagBase>
+                    <tagBase>git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</tagBase>
                 </configuration>
             </plugin>
             <plugin>
