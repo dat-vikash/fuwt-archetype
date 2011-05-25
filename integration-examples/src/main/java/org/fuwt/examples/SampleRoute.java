@@ -90,7 +90,7 @@ public class SampleRoute extends RouteBuilder
                         //was consumed
                 .aggregate(property("CamelCreatedTimestamp"), new GroupingAggregationStrategy())
                 .completionFromBatchConsumer()
-                .to("log:org.fuwt.examples?level=DEBUG&showAll=true")
+                //.to("log:org.fuwt.examples?level=DEBUG&showAll=true")
                 .marshal(jaxbDataFormat)
                 .to("log:org.fuwt.examples?level=INFO&showAll=true")
                 .to("smooks://META-INF/smooks/examples/smooks-sample.xml")

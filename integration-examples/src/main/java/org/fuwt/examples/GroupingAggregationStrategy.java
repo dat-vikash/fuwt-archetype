@@ -36,7 +36,7 @@ public class GroupingAggregationStrategy implements AggregationStrategy {
             listExchange.getIn().setBody(list);
         }
 
-        XmlList list = (XmlList) listExchange.getIn().getBody();
+        XmlList list = listExchange.getIn().getBody(XmlList.class);
         list.listItems().add(listItem);
         listExchange.getIn().setBody(list);
 

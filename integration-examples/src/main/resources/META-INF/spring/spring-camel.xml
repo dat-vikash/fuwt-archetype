@@ -14,8 +14,11 @@
     resolver won't work for unit tests, so we need to configure based on env-->
     <bean id="packageScanClassResolver" class="${camel.packagescanresolver}"/>
 
+    <bean id="camelSilentPropertiesResolver" class="org.fuwt.examples.SilentPropertiesResolver"/>
+
     <camel:camelContext id="camel">
-        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration/app.properties" id="routeProperties"/>
+        <camel:propertyPlaceholder location="classpath:default.properties,file:/etc/integration/app.properties" id="routeProperties"
+                propertiesResolverRef="camelSilentPropertiesResolver"/>
 
         <!-- TODO: Replace with more specific scan to your app -->
         <camel:contextScan>
