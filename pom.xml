@@ -38,6 +38,7 @@
         <repository>
             <id>fuwt-repo</id>
             <name>Freelancers Repository</name>
+            <url>${fuwt.repo}</url>
         </repository>
     </repositories>
 
@@ -567,7 +568,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <tagBase>git+ssh://repositories.fuwt/git/fuwt-archetype.git</tagBase>
+                    <!---->
                 </configuration>
             </plugin>
 
