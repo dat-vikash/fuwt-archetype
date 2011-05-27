@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.fuwt</groupId>
-  <artifactId>integration-quickstart-template-archetype</artifactId>
+  <artifactId>integration-quickstart</artifactId>
   <version>1.2-SNAPSHOT</version>
-  <packaging>maven-archetype</packaging>
+  <packaging>jar</packaging>
 
-  <name>integration-quickstart-template-archetype</name>
+  <name>integration-quickstart</name>
 
   <build>
     <extensions>
