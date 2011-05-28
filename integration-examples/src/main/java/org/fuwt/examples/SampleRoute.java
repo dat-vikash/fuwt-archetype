@@ -78,7 +78,7 @@ public class SampleRoute extends RouteBuilder
         JAXBContext jaxbContext = JAXBContext.newInstance(SampleModel.class, XmlList.class);
         JaxbDataFormat jaxbDataFormat = new JaxbDataFormat(jaxbContext);
         jaxbDataFormat.setPrettyPrint(true);
-        //Smooks smooks = new Smooks(getClass().getResourceAsStream());
+
         from("jpa://org.fuwt.examples.SampleModel?persistenceUnit=main" +
              "&consumer.namedQuery=getAllDirtySamples" +
              "&consumeDelete=false" +
@@ -89,12 +89,14 @@ public class SampleRoute extends RouteBuilder
                         //aggregate the consumed JPA records based on the time of the that batch the
                         //was consumed
                 .aggregate(property("CamelCreatedTimestamp"), new GroupingAggregationStrategy())
+
                 .completionFromBatchConsumer()
-                //.to("log:org.fuwt.examples?level=DEBUG&showAll=true")
+                .completionSize(4)
+                .to("log:org.fuwt.examples?level=DEBUG&showAll=true")
                 .marshal(jaxbDataFormat)
                 .to("log:org.fuwt.examples?level=INFO&showAll=true")
                 .to("smooks://META-INF/smooks/examples/smooks-sample.xml")
-                .to("log:org.fuwt.examples?level=INFO")
+                .to("log:org.fuwt.examples?level=INFO&showAll=true");
                 .to("activemq:queue:TEST?testConnectionOnStartup=true");
     }
 

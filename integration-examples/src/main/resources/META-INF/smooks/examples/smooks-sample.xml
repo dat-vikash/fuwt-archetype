@@ -3,18 +3,23 @@
 	xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd"
 	xmlns:core="http://www.milyn.org/xsd/smooks/smooks-core-1.4.xsd"
     xmlns:ftl="http://www.milyn.org/xsd/smooks/freemarker-1.1.xsd"
-	xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.2.xsd">
+	xmlns:edi="http://www.milyn.org/xsd/smooks/edi-1.2.xsd"
+    xmlns:camel="http://www.milyn.org/xsd/smooks/camel-1.4.xsd">
 
 
     <core:filterSettings type="DOM" defaultSerialization="false" />
+
 
 
     <resource-config selector="list">
         <resource>org.milyn.delivery.DomModelCreator</resource>
     </resource-config>
 
+
+
     <ftl:freemarker applyOnElement="list">
         <ftl:template >/META-INF/smooks/examples/sample-template.ftl</ftl:template>
+
     </ftl:freemarker>
 
 
