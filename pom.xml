@@ -31,18 +31,26 @@
         <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
 
         <hibernate.scope>compile</hibernate.scope>
+        <tests.ignore.failure>true</tests.ignore.failure>
     </properties>
 
-    <!-- if we are deploying to jboss we don't want to include the hibernate jars in the war file-->
     <profiles>
+        <!-- if we are deploying to jboss we don't want to include the hibernate jars in the war file -->
         <profile>
             <id>jboss-deploy</id>
             <properties>
                 <hibernate.scope>provided</hibernate.scope>
             </properties>
         </profile>
-    </profiles>
 
+        <!-- if we are building on CI server we  want to fail the build if tests fail -->
+        <profile>
+            <id>strict-testing</id>
+            <properties>
+                <tests.ignore.failure>false</tests.ignore.failure>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
@@ -577,7 +585,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.8</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>${tests.ignore.failure}</testFailureIgnore>
                 </configuration>
             </plugin>
 
@@ -599,7 +607,7 @@
                 <configuration>
                     <!-- will fork 1 process per test -->
                     <forkMode>always</forkMode>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>${tests.ignore.failure}</testFailureIgnore>
                 </configuration>
             </plugin>
 
