@@ -96,7 +96,7 @@ public class SampleRoute extends RouteBuilder
                 .marshal(jaxbDataFormat)
                 .to("log:org.fuwt.examples?level=INFO&showAll=true")
                 .to("smooks://META-INF/smooks/examples/smooks-sample.xml")
-                .to("log:org.fuwt.examples?level=INFO&showAll=true")
+                .to("log:org.fuwt.examples?level=INFO&showAll=true");
                 .to("activemq:queue:TEST?testConnectionOnStartup=true");
     }
 

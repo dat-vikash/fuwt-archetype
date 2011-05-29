@@ -20,8 +20,7 @@ import java.util.Date;
  */
 @XmlRootElement(name = "sample")
 @Entity
-@SecondaryTable(name = "sample_extension",
-        pkJoinColumns = @PrimaryKeyJoinColumn(name = "\"blah\"", referencedColumnName = "id"))
+@SecondaryTable(name = "sample_extension")
 @NamedQuery(name = "getAllDirtySamples", query = "select s from SampleModel s where s.syncd=false ")
 public class SampleModel {
 
@@ -40,7 +39,7 @@ public class SampleModel {
         this.syncd = syncd;
     }
 
-    @Column(name = "\"id\"")
+    @Column(name = "id")
     @Id
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
