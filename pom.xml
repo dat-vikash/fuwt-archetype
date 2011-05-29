@@ -30,6 +30,9 @@
         <git.user>${user.name}</git.user>
         <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
 
+        <fuwt.scm>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</fuwt.scm>
+        <fuwt.scm.tags>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</fuwt.scm.tags>
+
         <hibernate.scope>compile</hibernate.scope>
         <tests.ignore.failure>true</tests.ignore.failure>
     </properties>
@@ -50,6 +53,15 @@
                 <tests.ignore.failure>false</tests.ignore.failure>
             </properties>
         </profile>
+
+      <!-- Used only when invoking release:perform so as not to re-run 
+           tests as part of the deployment--> 
+      <profile> 
+          <id>release</id> 
+          <properties> 
+            <skipTests>true</skipTests> 
+          </properties> 
+      </profile> 
     </profiles>
 
     <repositories>
@@ -80,9 +92,10 @@
     </distributionManagement>
 
     <scm>
-        <url>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</url>
-        <developerConnection>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</developerConnection>
-        <connection>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</connection>
+        <url>${fuwt.scm}</url>
+        <developerConnection>${fuwt.scm}</developerConnection>
+        <connection>${fuwt.scm}</connection>
+        <tag>${fuwt.scm.tags}</tag>
     </scm>
 
 
@@ -616,7 +629,8 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <tagBase>git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</tagBase>
+                    <preparationGoals>clean install</preparationGoals> 
+                    <goals>deploy -P release</goals> 
                 </configuration>
             </plugin>
             <plugin>
