@@ -16,6 +16,7 @@
         <property name="messageConverters">
             <list>
                 <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
             </list>
         </property>
     </bean>
