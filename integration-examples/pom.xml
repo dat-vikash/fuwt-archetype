@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.fuwt</groupId>
         <artifactId>core-pom</artifactId>
-        <version>1.5</version>
+        <version>1.6-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
 
     <artifactId>integration-examples</artifactId>
-    <version>1.5</version>
+    <version>1.6-SNAPSHOT</version>
     <name>integration-examples</name>
 
     <packaging>war</packaging>
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.fuwt</groupId>
             <artifactId>integration-libs</artifactId>
-            <version>1.5</version>
+            <version>1.6-SNAPSHOT</version>
         </dependency>
 
 
