@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
     <modelVersion>4.0.0</modelVersion>
@@ -54,14 +55,14 @@
             </properties>
         </profile>
 
-      <!-- Used only when invoking release:perform so as not to re-run 
-           tests as part of the deployment--> 
-      <profile> 
-          <id>release</id> 
-          <properties> 
-            <skipTests>true</skipTests> 
-          </properties> 
-      </profile> 
+        <!-- Used only when invoking release:perform so as not to re-run
+   tests as part of the deployment-->
+        <profile>
+            <id>release</id>
+            <properties>
+                <skipTests>true</skipTests>
+            </properties>
+        </profile>
     </profiles>
 
     <repositories>
@@ -190,13 +191,6 @@
                 <scope>compile</scope>
             </dependency>
 
-
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-jpa</artifactId>
-                <version>${camel.version}</version>
-                <scope>compile</scope>
-            </dependency>
 
             <dependency>
                 <groupId>org.apache.camel</groupId>
@@ -384,6 +378,13 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
             <scope>${hibernate.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jpa</artifactId>
+            <version>${camel.version}</version>
+            <scope>compile</scope>
         </dependency>
 
 
@@ -622,8 +623,8 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <preparationGoals>clean install</preparationGoals> 
-                    <goals>deploy -P release</goals> 
+                    <preparationGoals>clean install</preparationGoals>
+                    <goals>deploy -P release</goals>
                 </configuration>
             </plugin>
             <plugin>

@@ -45,6 +45,7 @@ public class SampleRouteIT extends IntegrationTestSupport {
                                      "<sample id=\".*?\">\n" +
                                      "    <name>testing</name>\n" +
                                      "    <syncd>false</syncd>\n" +
+                                     "    <thedate>.*?</thedate>\n" +
                                      "</sample>", Pattern.DOTALL));
 
         startofroute.assertIsSatisfied();
@@ -56,6 +57,7 @@ public class SampleRouteIT extends IntegrationTestSupport {
                                                                        "    <listitem id=\".*?\">\n" +
                                                                        "        <name>testing</name>\n" +
                                                                        "        <syncd>false</syncd>\n" +
+                                                                       "        <thedate>.*?</thedate>\n" +
                                                                        "    </listitem>\n" +
                                                                        "</list>", Pattern.DOTALL));
         }
