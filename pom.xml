@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
     <modelVersion>4.0.0</modelVersion>
@@ -544,6 +545,17 @@
 
         <finalName>core-pom</finalName>
 
+        <!-- We want to filter the test resources for substitution of configured properties.
+             Specifically we want the jetty-env.xml to reflect our externally
+             configured properties.-->
+        <testResources>
+            <testResource>
+                <directory>src/test/resources/WEB-INF</directory>
+                <filtering>true</filtering>
+                <targetPath>WEB-INF</targetPath>
+            </testResource>
+        </testResources>
+
         <plugins>
 
 
@@ -646,6 +658,26 @@
                 <version>1.2</version>
             </plugin>
 
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.1.1</version>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <includes>
+                                <include>web.xml</include>
+                                <include>jboss-web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
 
         </plugins>
     </build>
