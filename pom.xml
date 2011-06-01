@@ -408,6 +408,13 @@
             <scope>${hibernate.scope}</scope>
         </dependency>
 
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>8.4-702.jdbc4</version>
+            <scope>compile</scope>
+        </dependency>
+
         <!-- Dependencies to handle logging -->
         <dependency>
             <groupId>commons-logging</groupId>
@@ -497,14 +504,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <!-- This dependency only needs to be scoped test because we will rely on JNDI datasources
-                 to access the DB once deployed in a production envrionment -->
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>8.4-702.jdbc4</version>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.camel</groupId>
