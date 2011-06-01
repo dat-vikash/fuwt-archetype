@@ -35,6 +35,7 @@
         <fuwt.scm>scm:git:ssh://repositories.fuwt/var/git/fuwt-archetype.git</fuwt.scm>
 
         <hibernate.scope>compile</hibernate.scope>
+        <jackson.scope>compile</jackson.scope>
         <tests.ignore.failure>true</tests.ignore.failure>
     </properties>
 
@@ -44,6 +45,7 @@
             <id>jboss-deploy</id>
             <properties>
                 <hibernate.scope>provided</hibernate.scope>
+                <jackson.scope>provided</jackson.scope>
             </properties>
         </profile>
 
@@ -133,7 +135,7 @@
                 <groupId>org.codehaus.jackson</groupId>
                 <artifactId>jackson-mapper-asl</artifactId>
                 <version>1.7.5</version>
-                <scope>compile</scope>
+                <scope>${jackson.scope}</scope>
             </dependency>
 
             <!-- Dependenct for template engine to be used for web view templates or
@@ -504,7 +506,7 @@
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>8.4-702.jdbc4</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
