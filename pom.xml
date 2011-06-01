@@ -590,6 +590,7 @@
                     <useTestClasspath>true</useTestClasspath>
                     <jettyEnvXml>${project.basedir}/target/test-classes/WEB-INF/jetty-env.xml</jettyEnvXml>
                     <overrideWebXml>${project.basedir}/target/test-classes/WEB-INF/web-test.xml</overrideWebXml>
+                    <webAppSourceDirectory>${project.basedir}/target/${project.build.finalName}</webAppSourceDirectory>
                 </configuration>
             </plugin>
 
