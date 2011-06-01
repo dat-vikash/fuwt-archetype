@@ -38,12 +38,6 @@
         </dependency>
 
 
-        <!-- Dependency to support object to json mapping used in spring -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-        </dependency>
-
         <!-- Dependenct for template engine to be used for web view templates or
     generating specialized file formats -->
         <dependency>
