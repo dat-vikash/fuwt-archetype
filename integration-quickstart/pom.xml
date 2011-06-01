@@ -4,7 +4,7 @@
 
   <groupId>org.fuwt</groupId>
   <artifactId>integration-quickstart</artifactId>
-  <version>1.10</version>
+  <version>1.10-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>integration-quickstart</name>
