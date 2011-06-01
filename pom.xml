@@ -31,7 +31,7 @@
         <git.user>${user.name}</git.user>
         <fuwt.repo>http://payments.dev.fuwt:8081/artifactory/repo</fuwt.repo>
 
-        <fuwt.scm>scm:git:ssh://git@repositories.fuwt/fuwt-archetype.git</fuwt.scm>
+        <fuwt.scm>scm:git:ssh://git@repositories.fuwt/var/git/fuwt-archetype.git</fuwt.scm>
 
         <hibernate.scope>compile</hibernate.scope>
         <jackson.scope>compile</jackson.scope>
