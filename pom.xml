@@ -576,8 +576,8 @@
                 <version>6.1.22</version>
                 <configuration>
                     <useTestClasspath>true</useTestClasspath>
-                    <jettyEnvXml>${project.basedir}/src/test/resources/WEB-INF/jetty-env.xml</jettyEnvXml>
-                    <overrideWebXml>${project.basedir}/src/test/resources/WEB-INF/web-test.xml</overrideWebXml>
+                    <jettyEnvXml>${project.basedir}/target/test-classes/WEB-INF/jetty-env.xml</jettyEnvXml>
+                    <overrideWebXml>${project.basedir}/target/test-classes/WEB-INF/web-test.xml</overrideWebXml>
                 </configuration>
             </plugin>
 
