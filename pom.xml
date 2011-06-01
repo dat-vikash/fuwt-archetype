@@ -130,13 +130,6 @@
             </dependency>
 
 
-            <!-- Dependency to support object to json mapping used in spring -->
-            <dependency>
-                <groupId>org.codehaus.jackson</groupId>
-                <artifactId>jackson-mapper-asl</artifactId>
-                <version>1.7.5</version>
-                <scope>${jackson.scope}</scope>
-            </dependency>
 
             <!-- Dependenct for template engine to be used for web view templates or
         generating specialized file formats -->
@@ -159,6 +152,10 @@
                     <exclusion>
                         <groupId>javax.persistence</groupId>
                         <artifactId>persistence-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-core-lgpl</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -310,8 +307,8 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.6.4</version>
-            <scope>compile</scope>
+            <version>1.6.3</version>
+            <scope>${jackson.scope}</scope>
         </dependency>
 
         <!-- Dependencies for spring (IoC container) -->
