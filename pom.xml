@@ -551,6 +551,14 @@
                 <filtering>true</filtering>
                 <targetPath>WEB-INF</targetPath>
             </testResource>
+
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>WEB-INF/**</exclude>
+                </excludes>
+            </testResource>
         </testResources>
 
         <plugins>
@@ -673,6 +681,14 @@
                                 <include>web.xml</include>
                                 <include>jboss-web.xml</include>
                             </includes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/webapp</directory>
+                            <filtering>false</filtering>
+                            <excludes>
+                                <exclude>WEB-INF/web.xml</exclude>
+                                <exclude>WEB-INF/jboss-web.xml</exclude>
+                            </excludes>
                         </resource>
                     </webResources>
                 </configuration>
