@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 
     <modelVersion>4.0.0</modelVersion>
@@ -36,6 +37,8 @@
         <hibernate.scope>compile</hibernate.scope>
         <jackson.scope>compile</jackson.scope>
         <tests.ignore.failure>true</tests.ignore.failure>
+
+        <jetty.port>8080</jetty.port>
     </properties>
 
     <profiles>
@@ -127,7 +130,6 @@
                 <version>2.0.0.RELEASE</version>
                 <scope>compile</scope>
             </dependency>
-
 
 
             <!-- Dependenct for template engine to be used for web view templates or
@@ -264,27 +266,6 @@
                 <artifactId>jasypt</artifactId>
                 <version>1.7</version>
                 <scope>compile</scope>
-            </dependency>
-
-
-            <!-- Servlet -->
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>jsp-api</artifactId>
-                <version>2.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
             </dependency>
 
 
@@ -451,6 +432,26 @@
             <scope>compile</scope>
         </dependency>
 
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- Dependencies from here on are only needed for unit test and possibly some automated
           integration test execution -->
@@ -591,8 +592,13 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.22</version>
+                <version>6.1.26</version>
                 <configuration>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>${jetty.port}</port>
+                        </connector>
+                    </connectors>
                     <useTestClasspath>true</useTestClasspath>
                     <jettyEnvXml>${project.basedir}/target/test-classes/WEB-INF/jetty-env.xml</jettyEnvXml>
                     <overrideWebXml>${project.basedir}/target/test-classes/WEB-INF/web-test.xml</overrideWebXml>
@@ -664,7 +670,6 @@
                 <artifactId>versions-maven-plugin</artifactId>
                 <version>1.2</version>
             </plugin>
-
 
 
             <plugin>
