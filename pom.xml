@@ -407,12 +407,6 @@
             <scope>${hibernate.scope}</scope>
         </dependency>
 
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>8.4-702.jdbc4</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!-- Dependencies to handle logging -->
         <dependency>
@@ -460,6 +454,13 @@
 
         <!-- Dependencies from here on are only needed for unit test and possibly some automated
           integration test execution -->
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>8.4-702.jdbc4</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
