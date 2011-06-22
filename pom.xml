@@ -220,6 +220,12 @@
             </dependency>
 
             <dependency>
+              <groupId>org.apache.camel</groupId>
+              <artifactId>camel-script</artifactId>
+              <version>${camel.version}</version>
+            </dependency>
+
+            <dependency>
                 <!-- supports scheduling of routes -->
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-quartz</artifactId>
@@ -405,6 +411,20 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
             <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
